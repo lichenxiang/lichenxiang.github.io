@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="月泉的博客">
+<meta name="twitter:description" content="聊聊行走在技术路上的技术和生活。Gmail: yuequan1997@gmail.com">
+<meta name="twitter:image:src" content="http://www.yuequan.org/images/avatar.png">
+
+<meta property="og:url" content="http://www.yuequan.org">
+<meta property="og:title" content="月泉的博客">
+<meta property="og:description" content="聊聊行走在技术路上的技术和生活。Gmail: yuequan1997@gmail.com">
+<meta property="og:site_name" content="月泉的博客">
+<meta property="og:image" content="http://www.yuequan.org/images/avatar.png">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="月泉的博客">
+<meta itemprop="description" content="聊聊行走在技术路上的技术和生活。Gmail: yuequan1997@gmail.com">
+<meta itemprop="image" content="http://www.yuequan.org/images/avatar.png">
+
+<link rel="canonical" href="http://www.yuequan.org">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="Java,Spring,">
+        <meta name="description" content="Spring源码系列 - 开篇 - Spring体系结构简介">
+        <meta name="author" content="月泉">
+        <title>Spring源码系列 - 开篇 - Spring体系结构简介</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/avatar.png" />
+    月泉的博客
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="https://github.com/yuequan1997" target="_blank"><img style="width: 30px; height: 30px;" src="/images/github.png" alt="GitHub Logo"></a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">Spring源码系列 - 开篇 - Spring体系结构简介</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(http://ww1.sinaimg.cn/large/7fd2951agy1fn1hwzvducj205k05kaab.jpg);"></span>
+                    <a class="name" href="/about.me.html">月泉</a>
+                    
+                    <span class="date" data-time="1514906091"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/Java/index.html">Java</a><a class="tag" href="/tag/Spring/index.html">Spring</a></span>
+                </section>
+                <article class="content"><h1>Spring源码系列 - 开篇 - Spring体系结构简介</h1>
+
+<blockquote>
+<p>此篇有些话说在前头，以免浪费阅读的时间，该篇只需要大致了解并不需要深究，只是为没有认真了解过Spring体系结构的读者为后续章节的阅读做个铺垫，以免对于我分析的那个模块的作用云里雾里，如果说得高大上一点是不是要借用一些惯用的词语：自顶向下？233333开个玩笑。</p>
+</blockquote>
+
+<p>我也面临过如何阅读一个框架的源码的问题？该怎么阅读才好？从哪里下手？摸不着头摸不着尾，自己平时也有喜欢做笔记自己跟自己讨论的习惯，感觉还是少了点什么，想把自己理解的拿出来跟大家分享探讨，于是今年自己开始写博客了，也不知道写些什么好，但直接把笔记发出来感觉又有伤大雅，于是我决定开始慢慢的利用博客的博文来梳理自己的知识体系，近期的博客可能都会围绕着Spring的源码分析、多线程相关的知识。</p>
+
+<p>Spring这个框架我就不多介绍，玩Java的应该都知道这个大名鼎鼎的框架，当然个人感觉Spring已经不能用这个框架这种词语来形容了，它已经是一个很庞大的生态了(PS: 感谢这些贡献者)，先简单介绍一下Spring的体系结构，哦对了我写这个系列博文使用的Spring版本是5.0.2
+<img src="data:image/gif;base64,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" data-src="https://ws1.sinaimg.cn/large/7fd2951agy1fn2oaj5fcuj20k00f00ti.jpg" alt="该图来自于Spring官方" />
+<strong>Core Container模块</strong></p>
+
+<p>根据上图可以看到该模块主要包含了beans、core、context、SpEL几个内容，<code>core</code>和<code>beans</code>这2个模块提供了整个框架的基础，它提供了IOC和注入反转的功能，其中最主要的是BeanFactory看名字就知道它是使用工厂模式进行的实现，它能弱化你程序化单例模式的需要(如果理解不了的就简单的理解为它不需要你去显式的编写一些对象的单例其实不止单纯的单例这么简单，慢慢来吧233333)，可以将配置和特定的依赖关系进行解耦。</p>
+
+<p>core(spring-core):
+    该模块主要包含了Spring框架的核心工具类，基本上所有的Spring组件都会使用到该模块中的类，它可以说的上是整个框架的核心了</p>
+
+<p>beans(spring-beans):
+    该模块基本所有应用都会应用到，它提供了配置文件的解析、创建、管理bean以及进行IOC/DI等操作相关的类</p>
+
+<p>context(spring-context):
+    该模块是建立在<code>core</code>和<code>beans</code>模块的基础之上，它提供了一种类似于JNDI注册器的对象访问方法，同时<code>context</code>模块继承了<code>beans</code>模块的一些特性，提供了大量的扩展并且添加了对国际化、事件传播、资源加载和创建Context的支持，同时<code>context</code>模块也支持J2EE的一些特性，比如EJB、JMX和基础的远程处理，其中的ApplicationContext接口是该模块的关键核心，后续会分析到该接口，现在就不做太详细的描述了</p>
+
+<p>SpEL(spring-expression):
+    该模块提供了强大的b表达式语言用于在运行时操作对象，它是JSP2.1规范所指定的统一表达式语言的扩展，该语言支持设置和获取属性的值、属性的分配、方法的调用、数组内容的存储、容器和索引、逻辑和算术运算符、命名变量以及从Spring的 IoC容器中根据名称检索对象。当然常见的集合操作也是支持的</p>
+
+<p><strong>AOP / Instrumentation 模块</strong></p>
+
+<p>AOP模块提供了符合AOP联盟的面向切面编程的实现，同时它也允许你自定义例如：方法拦截器和切入点，将逻辑代码和方法拦截器的代码彻底分开，降低他们之间耦合性，利用 source-level 的元数据功能，还可以将各种行为信息合并到你的代码中，这有点像.Net技术中的attribute概念
+单独的spring-aspects模块提供了AspectJ的集成和使用。
+<code>instrument</code>模块提供了<code>class instrumentation</code>的支持以及在某些应用程序服务器使用类加载器实现。</p>
+
+<p><strong>Messaging 模块</strong></p>
+
+<p>该模块是Spring4以后引入的，是从Spring集成项目中抽象出来的，例如Message、MessageChannel、MessageHandler以及其他用来提供基于消息的基础服务，该模块还包括了能将消息映射到方法的注解，类似于基于编程模型的Spring MVC注解。</p>
+
+<p><strong>Data Access/Integration 模块</strong></p>
+
+<p>该模块由由JDBC、ORM、OXM、JMS和事务模块组成
+jdbc(spring-jdbc): 玩Java的应该都知道JDBC没有经过封装时写起来的时候有多么的冗长吧..，该模块主要对JDBC进行了封装
+trasaction(spring-tx): 该模块提供了可编程和声明式事务管理，这些类都必须实现特定的接口，并且对所有POJO都适用。</p>
+
+<p>orm(spring-orm): 该模块提供了流行的对象关系映射(ORM)API提供了一个交互层，例如JPA、JDO、Hibernate、MyBatis等，利用该模块的封装可以在Spring提供的特性上使用所有的O/R映射框架与Spring提供的其它功能进行结合使用，说白了就是对这些ORM框架进行集成，如果这样好理解就这样理解吧,233333</p>
+
+<p>oxm(spring-oxm):该模块提供了一个对Object / XML映射实现的抽象层，Object/XML映射实现包括JAXB、Castor、XMLBeans、JiBX和XStream，如果理解不了的话,可以简单的理解为就是xml转换成对象，233333。</p>
+
+<p>jms:该模块用于生产和消费消息的功能，从Spring4.1开始提供集成<code>messaging</code>模块</p>
+
+<p><strong>Web模块</strong></p>
+
+<p>该模块由web、webmvc、websocket、portlet模块构成</p>
+
+<p>web(spring-web):该模块提供了基本的面向Web开发的集成功能，例如文件上传、使用Servlet listeners和Web开发应用程序上下文初始化IOC容器,也包含HTTP客户端以及Spring有关Web部分的远程访问支持</p>
+
+<p>webmvc(spring-webmvc): 该模块也被称为Web-Servlet模块，包含Spring的model-view-controller(MVC)的实现和REST Web Services的实现, Spring的MVC框架使得模型范围内的代码和web forms之间能够清楚地分离开来，并与Spring框架的其他特性集成在一起</p>
+
+<p>portlet(spring-webmvc-portlet)：该模块也被称为Web-Portlet模块，提供了MVC模式的实现，使用Portlet环境和webmvc模块功能的镜像，其实这块已经在Spring 5中已经被废弃被webflux模块取代23333</p>
+
+<p><strong>Test模块</strong></p>
+
+<p>spring-test模块支持通过集成JUnit或TestNG来进行单元测试和集成测试，它提供了持续加载ApplicationContext并且会缓存这些上下文，而且它还提供了Mock对象可以用来隔离测试代码~~~</p>
+
+<p>大致就了解到这里了，剧透一波我会从beans模块的源码开始写博客~~~~ 2333 ，祝大家新年快乐！。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(http://ww1.sinaimg.cn/large/7fd2951agy1fn1hwzvducj205k05kaab.jpg);"></div>
+                    <a class="name" href="/about.me.html">月泉</a>
+                    <div class="intro">伪文艺中二青年，热爱技术，热爱生活。</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/spring_beans_core_class_basic_intro.html">Spring源码系列- Spring Beans - 核心类的基本介绍</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/blog_start.html">博客开通了</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        月泉的博客 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">友情链接 <a href="http://blog.battcn.com" target="_blank">Battcn Blog</a>&nbsp;&nbsp;<a href="http://charles.party/" target="_blank">Charles Blog</a></a></span>
+</footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111967505-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111967505-1');
+</script>
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
