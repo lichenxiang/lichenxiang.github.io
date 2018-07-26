@@ -13,21 +13,21 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="李晨翔の博客">
 <meta name="twitter:description" content="没事吹吹水~">
-<meta name="twitter:image:src" content="http://www.chole.io/blog/images/avatar.png">
+<meta name="twitter:image:src" content="http://blog.lichenxiang.com/images/avatar.png">
 
-<meta property="og:url" content="http://www.chole.io/blog">
+<meta property="og:url" content="http://blog.lichenxiang.com">
 <meta property="og:title" content="李晨翔の博客">
 <meta property="og:description" content="没事吹吹水~">
 <meta property="og:site_name" content="李晨翔の博客">
-<meta property="og:image" content="http://www.chole.io/blog/images/avatar.png">
+<meta property="og:image" content="http://blog.lichenxiang.com/images/avatar.png">
 <meta property="og:type" content="website">
 <meta name="robots" content="noodp">
 
 <meta itemprop="name" content="李晨翔の博客">
 <meta itemprop="description" content="没事吹吹水~">
-<meta itemprop="image" content="http://www.chole.io/blog/images/avatar.png">
+<meta itemprop="image" content="http://blog.lichenxiang.com/images/avatar.png">
 
-<link rel="canonical" href="http://www.chole.io/blog">
+<link rel="canonical" href="http://blog.lichenxiang.com">
 
 <link rel="shortcut icon" href="/favicon.png">
 <link rel="apple-itouch-icon" href="/favicon.png">
@@ -42,6 +42,28 @@
         second: '秒前'
     };
     var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
 </script>
 
 

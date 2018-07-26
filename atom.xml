@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>李晨翔の博客</title>
-  <id>http://www.chole.io/blog</id>
-  <updated>2018-07-26T10:56:40+08:00</updated>
+  <id>http://blog.lichenxiang.com</id>
+  <updated>2018-07-26T14:09:31+08:00</updated>
   <subtitle>没事吹吹水~</subtitle>
-  <link href="http://www.chole.io/blog"></link>
+  <link href="http://blog.lichenxiang.com"></link>
   <author>
     <name>李晨翔の博客</name>
   </author>
   <entry>
     <title>吹吹牛逼，做做梦 —— 李晨翔</title>
-    <updated></updated>
-    <id>urn:uuid:75870ab5-1320-4c1d-86ca-4773cd544630</id>
+    <updated>2016-07-11T17:00:00+08:00</updated>
+    <id>tag:blog.lichenxiang.com,2016-07-11:/ink-blog-tool.html</id>
     <content type="html"></content>
-    <link href="http://www.chole.io/blog/ink-blog-tool.html"></link>
+    <link href="http://blog.lichenxiang.com/ink-blog-tool.html"></link>
+    <author>
+      <name>李晨翔</name>
+    </author>
   </entry>
 </feed>
