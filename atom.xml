@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>李晨翔の博客</title>
   <id>http://blog.lichenxiang.com</id>
-  <updated>2018-07-26T15:19:17+08:00</updated>
+  <updated>2018-07-26T15:30:02+08:00</updated>
   <subtitle>没事吹吹水~</subtitle>
   <link href="http://blog.lichenxiang.com"></link>
   <author>
@@ -9,17 +9,10 @@
   </author>
   <entry>
     <title>吹吹牛逼，做做梦 —— 李晨翔</title>
-    <updated>2016-07-11T17:00:00+08:00</updated>
-    <id>tag:blog.lichenxiang.com,2016-07-11:/ink-blog-tool.html</id>
-    <content type="html">&lt;p&gt;InkPaper is an static blog generator developed by Golang, No dependencies, Cross platform, Easy use, Fast build, Elegant theme.&lt;/p&gt;&#xA;</content>
+    <updated>2018-07-26T17:00:00+08:00</updated>
+    <id>tag:blog.lichenxiang.com,2018-07-26:/ink-blog-tool.html</id>
+    <content type="html">&lt;p&gt;吹吹牛逼，做做梦！&lt;/p&gt;&#xA;</content>
     <link href="http://blog.lichenxiang.com/ink-blog-tool.html"></link>
-  </entry>
-  <entry>
-    <title>An Elegant Static Blog Generator —— InkPaper</title>
-    <updated>2016-07-11T17:00:00+08:00</updated>
-    <id>tag:blog.lichenxiang.com,2016-07-11:/ink-blog-tool-en.html</id>
-    <content type="html">&lt;p&gt;InkPaper is an static blog generator developed by Golang, No dependencies, Cross platform, Easy use, Fast build, Elegant theme.&lt;/p&gt;&#xA;</content>
-    <link href="http://blog.lichenxiang.com/ink-blog-tool-en.html"></link>
     <author>
       <name>李晨翔</name>
     </author>
