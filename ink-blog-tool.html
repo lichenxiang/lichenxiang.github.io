@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="设计,写作,">
         <meta name="description" content="吹吹牛逼，做做梦 —— 李晨翔">
@@ -96,7 +74,10 @@
                     
                     <span class="tags"><a class="tag" href="/tag/%e8%ae%be%e8%ae%a1/index.html">设计</a><a class="tag" href="/tag/%e5%86%99%e4%bd%9c/index.html">写作</a></span>
                 </section>
-                <article class="content"></article>
+                <article class="content"><h2>简介</h2>
+
+<p>范德萨洛凯股份大数据咖喱的快感杰拉德开关机阿里开关机阿拉丁开发工具联发科的宫颈癌绿地控股进阿里看到个几哈开发和噶</p>
+</article>
                 <section class="author">
                     <div class="avatar" style="background-image: url(/images/avatar.png);"></div>
                     <a class="name" href="/about.me.html">李晨翔</a>
